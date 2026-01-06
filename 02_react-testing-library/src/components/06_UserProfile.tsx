@@ -10,11 +10,12 @@ interface User {
 }
 
 const fetchUser = async (userId: number): Promise<User> => {
-  const response = await fetch(`http://localhost:8080/users/${userId}`);
+  // fetch()의 반환 타입: Promise<Response{ok: boolean, status: number, json: () => Promise<User>}>
+  const response = await fetch(`http://localhost:8080/users/${userId}`); 
   if(!response.ok) {
     throw new Error('사용자를 찾을 수 없습니다');
   }
-  const data = await response.json();
+  const data = await response.json(); // Promise<User>
   return data;
 };
 
